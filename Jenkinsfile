@@ -8,5 +8,6 @@ pipeline {
 		
 		stage('after'){
 			echo "stage 2"
+		}
 	}
 }
