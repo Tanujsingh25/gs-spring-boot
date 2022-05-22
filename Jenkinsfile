@@ -13,25 +13,35 @@ pipeline {
 		
 		stage('clean-app'){
 			steps{
-				sh "mvn clean"
+				dir('complete'){
+					sh "pwd"
+				}
+				sh "ls -lrth; ./mvnw clean"
 			}
 		}
 		
 		stage('compile-app'){
 			steps{
-				sh "mvn compile"
+				sh "./mvn compile"
 			}
 		}
 
 		stage('test-app'){
 			steps{
-				sh "mvn test"
+				sh "./mvn test"
 			}
 		}
 
 		stage('build-app'){
 			steps{
-				sh "mvn packageclean"
+				sh "./mvn package"
+			}
+		}
+
+		stage('deploy'){
+			steps{
+				sh "cd target"
+				sh "java -jar "
 			}
 		}
 
