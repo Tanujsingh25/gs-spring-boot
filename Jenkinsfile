@@ -20,19 +20,19 @@ pipeline {
 		
 		stage('compile-app'){
 			steps{
-				sh "./mvn compile"
+				sh "./mvnw compile"
 			}
 		}
 
 		stage('test-app'){
 			steps{
-				sh "./mvn test"
+				sh "./mvnw test"
 			}
 		}
 
 		stage('build-app'){
 			steps{
-				sh "./mvn package"
+				sh "./mvnw package"
 			}
 		}
 
