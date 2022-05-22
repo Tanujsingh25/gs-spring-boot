@@ -20,19 +20,25 @@ pipeline {
 		
 		stage('compile-app'){
 			steps{
-				sh "./mvnw compile"
+				sh '''cd complete
+					  pwd
+					  ./mvnw compile'''
 			}
 		}
 
 		stage('test-app'){
 			steps{
-				sh "./mvnw test"
+				sh '''cd complete
+					  pwd
+					  ./mvnw test'''
 			}
 		}
 
 		stage('build-app'){
 			steps{
-				sh "./mvnw package"
+				sh '''cd complete
+					  pwd
+					  ./mvnw package'''
 			}
 		}
 
