@@ -2,16 +2,38 @@ pipeline {
 	agent none
 
 	stages{	
-		stage('demo') {
-			steps{
-				echo "hello tanuj l"
+		stage('checkout') {
+			steps{ 	
+				echo "Checking out the  code....."
+				checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+    userRemoteConfigs: [[url: 'https://github.com/Tanujsingh25/gs-spring-boot.git']]])
+				
 			}
 		}
 		
-		stage('after'){
+		stage('clean-app'){
 			steps{
-				echo "stage 2"
+				sh "mvn clean"
 			}
 		}
+		
+		stage('compile-app'){
+			steps{
+				sh "mvn compile"
+			}
+		}
+
+		stage('test-app'){
+			steps{
+				sh "mvn test"
+			}
+		}
+
+		stage('build-app'){
+			steps{
+				sh "mvn packageclean"
+			}
+		}
+
 	}
 }
