@@ -13,10 +13,8 @@ pipeline {
 		
 		stage('clean-app'){
 			steps{
-				dir('complete'){
-					sh "pwd"
-				}
-				sh "ls -lrth; ./mvnw clean"
+				sh '''cd complete
+					  ls -lrth; ./mvnw clean'''
 			}
 		}
 		
@@ -40,8 +38,8 @@ pipeline {
 
 		stage('deploy'){
 			steps{
-				sh "cd target"
-				sh "java -jar "
+				sh '''cd target
+				      nohup java -jar -Dserver.port=8083 *.jar &&'''
 			}
 		}
 
