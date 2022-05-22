@@ -44,7 +44,12 @@ pipeline {
 
 		stage('deploy'){
 			steps{
-				sh "BUILD_ID=dontKillMe nohup java -jar -Dserver.port=8083 complete/target/*.jar &"
+				script{
+					withEnv(['JENKINS_NODE_COOKIE=dontkill']){
+						sh "nohup java -jar -Dserver.port=8083 complete/target/*.jar &"
+					}
+				}
+				
 			}
 		}
 	}
