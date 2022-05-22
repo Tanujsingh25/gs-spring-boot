@@ -44,9 +44,8 @@ pipeline {
 
 		stage('deploy'){
 			steps{
-				sh "nohup java -jar -Dserver.port=8083 complete/target/*.jar &&"
+				sh "nohup java -jar -Dserver.port=8083 complete/target/*.jar &"
 			}
 		}
-
 	}
 }
