@@ -44,7 +44,7 @@ pipeline {
 
 		stage('deploy'){
 			steps{
-				sh "nohup java -jar -Dserver.port=8083 complete/target/*.jar &"
+				sh "BUILD_ID=dontKillMe nohup java -jar -Dserver.port=8083 complete/target/*.jar &"
 			}
 		}
 	}
