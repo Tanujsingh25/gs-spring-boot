@@ -12,7 +12,7 @@ pipeline {
 		stage ('clean') {
 			steps{
 				sh '''cd complete
-				./mvnwclean'''
+				./mvnw clean'''
 			}
 		}
 
