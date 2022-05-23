@@ -14,28 +14,28 @@ pipeline {
 		stage ('clean') {
 			steps{
 				sh '''cd complete
-				./mvnm clean'''
+				./mvnwclean'''
 			}
 		}
 
 		stage ('Run - code') {
 			steps{
-				cd complete
-				./mvnm compile
+				sh '''cd complete
+				./mvnw compile'''
 			}
 		}
 
-		stage (test- code) {
+		stage ('test- code') {
 			steps{
-				cd complete
-				./mvnm test
+				sh '''cd complete
+				./mvnw test'''
 			}
 		}
 
-		stage (build-app) {
+		stage ('build-app') {
 			steps{
-				cd complete
-				./mvnm package
+				sh '''cd complete
+				./mvnw package'''
 			}
 		}
 
