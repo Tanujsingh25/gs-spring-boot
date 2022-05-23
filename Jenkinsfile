@@ -10,47 +10,36 @@ pipeline {
 				
 			}
 		}
+
+		stage ('clean') {
+			steps{
+				sh '''cd complete
+				./mvnm clean'''
+			}
+		}
+
+		stage ('Run - code') {
+			steps{
+				cd complete
+				./mvnm compile
+			}
+		}
+
+		stage (test- code) {
+			steps{
+				cd complete
+				./mvnm test
+			}
+		}
+
+		stage (build-app) {
+			steps{
+				cd complete
+				./mvnm package
+			}
+		}
+
+
 		
-		stage('clean-app'){
-			steps{
-				sh '''cd complete
-					  ls -lrth; ./mvnw clean'''
-			}
-		}
-		
-		stage('compile-app'){
-			steps{
-				sh '''cd complete
-					  pwd
-					  ./mvnw compile'''
-			}
-		}
-
-		stage('test-app'){
-			steps{
-				sh '''cd complete
-					  pwd
-					  ./mvnw test'''
-			}
-		}
-
-		stage('build-app'){
-			steps{
-				sh '''cd complete
-					  pwd
-					  ./mvnw package'''
-			}
-		}
-
-		stage('deploy'){
-			steps{
-				script{
-					withEnv(['JENKINS_NODE_COOKIE=dontkill']){
-						sh "nohup java -jar -Dserver.port=8083 complete/target/*.jar &"
-					}
-				}
-				
-			}
-		}
 	}
 }
