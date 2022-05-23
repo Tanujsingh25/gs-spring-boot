@@ -5,9 +5,7 @@ pipeline {
 		stage('checkout') {
 			steps{ 	
 				echo "Checking out the  code....."
-				checkout([$class: 'GitSCM', branches: [[name: '*/$branch']],
-    userRemoteConfigs: [[url: 'https://github.com/Tanujsingh25/gs-spring-boot.git']]])
-				
+							
 			}
 		}
 
